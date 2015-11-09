@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <!-- TOP BLOCK -->
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <span>Filters :</span>
+                        <ul>
+                            {% for tag in tags %}
+                                <li><input data-id="{{ tag.id }}" type="checkbox">{{ tag.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <span>Filters :</span>
+                        <ul>
+                            <li><input name="sort" type="radio">price</li>
+                            <li><input name="sort" type="radio">Weight</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <input type="search" class="form-control" id="searchfield" placeholder="Search">
+                    </div>
+                    <div class="col-lg-3">
+                        <button type="button" class="btn btn-primary">OK</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- To learn : generate url -->
+                    <a href="/create">create article</a>
+                </div>
+            </div>
+        </div><!-- END TOP BLOCK -->
+
+        <!-- ARTICLE BLOCK -->
+        {% for product in products %}
+            <div class="row articles">
+                <div class="col-lg-3">
+                    <a href="#" class="thumbnail">
+                        <img alt="article image" style="height: 180px; width: 100%; display: block;" src="{{ asset('assets/img/Chat.jpg') }}" data-holder-rendered="true">
+                    </a>
+                </div>
+                <div class="col-lg-5">
+                    <span>{{ product.description }}</span><br />
+                    <span>Tag 1, Tag 2</span>  
+                </div>
+                <div class="col-lg-4">
+                    {{ product.price }} euros, {{ product.weight }}kg<br />
+                    <a href="/article/{{ product.id }}">
+                      Détails et photos
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
